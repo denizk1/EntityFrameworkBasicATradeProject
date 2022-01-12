@@ -17,6 +17,31 @@ namespace EntityFrameworkDemo
             }
 
         }
+        public List<Product> GetbyName(string key) //sadece ismi getir
+        {
+            using (ETradeContext context = new ETradeContext())
+            {
+                return context.Products.Where(p => p.Name.Contains(key)).ToList();
+            }
+
+        }
+        public Product GetById(int id) //aramak istediğin ürünü getir
+        {
+            using (ETradeContext context = new ETradeContext())
+            {
+                return context.Products.FirstOrDefault(p => p.Id==id);
+
+            }
+
+        }
+        public List<Product> GetbyUnitPrice(decimal min,decimal max) 
+        {
+            using (ETradeContext context = new ETradeContext())
+            {
+                return context.Products.Where(p => p.UnitPrice>=min && p.UnitPrice<max).ToList();
+            }
+
+        }
         public void Add(Product product) //ekle
         {
             using (ETradeContext context = new ETradeContext())

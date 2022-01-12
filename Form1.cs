@@ -26,7 +26,7 @@ namespace EntityFrameworkDemo
         {
             dgwProducts.DataSource = _productDal.GetAll();
         }
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Product product = new Product
@@ -70,6 +70,26 @@ namespace EntityFrameworkDemo
             _productDal.Delete(product);
             LoadDataSource();
             MessageBox.Show("Product Deleted!");
+        }
+
+        private void tbxSearch_TextChanged(object sender, EventArgs e)
+        {
+            //dgwProducts.DataSource = _productDal.GetAll().Where(p => p.Name.ToLower().Contains(tbxSearch.Text.ToLower())).ToList();
+            //dgwProducts.DataSource= _productDal.GetbyName(tbxSearch.Text);
+            dgwProducts.DataSource = _productDal.GetbyUnitPrice(Convert.ToDecimal(tbxmin), Convert.ToDecimal(tbxmax.Text));
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgwProducts.DataSource = _productDal.GetbyUnitPrice(Convert.ToDecimal(tbxmin.Text), Convert.ToDecimal(tbxmax.Text));
+        }
+
+        private void btnGetById_Click(object sender, EventArgs e)
+        {
+            List<Product> product = new List<Product>();
+            product.Add(_productDal.GetById(1));
+
+            dgwProducts.DataSource = product;
         }
     }
 }

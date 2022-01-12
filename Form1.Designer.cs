@@ -29,6 +29,9 @@ namespace EntityFrameworkDemo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Button btnSearch;
+            System.Windows.Forms.Button btnGetById;
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -63,6 +66,14 @@ namespace EntityFrameworkDemo
             this.lblName = new System.Windows.Forms.Label();
             this.lblStockAmount = new System.Windows.Forms.Label();
             this.dgwProducts = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tbxSearch = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.tbxmin = new System.Windows.Forms.TextBox();
+            this.tbxmax = new System.Windows.Forms.TextBox();
+            btnSearch = new System.Windows.Forms.Button();
+            btnGetById = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -72,7 +83,7 @@ namespace EntityFrameworkDemo
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(735, 283);
+            this.btnDelete.Location = new System.Drawing.Point(738, 313);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 37);
             this.btnDelete.TabIndex = 7;
@@ -90,7 +101,7 @@ namespace EntityFrameworkDemo
             this.groupBox3.Controls.Add(this.lblUnitPriceUpdate);
             this.groupBox3.Controls.Add(this.lblNameUpdate);
             this.groupBox3.Controls.Add(this.lblStockAmountUpdate);
-            this.groupBox3.Location = new System.Drawing.Point(503, 341);
+            this.groupBox3.Location = new System.Drawing.Point(504, 356);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(331, 324);
             this.groupBox3.TabIndex = 6;
@@ -238,7 +249,7 @@ namespace EntityFrameworkDemo
             this.groupBox1.Controls.Add(this.lblUnitPrice);
             this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.lblStockAmount);
-            this.groupBox1.Location = new System.Drawing.Point(114, 341);
+            this.groupBox1.Location = new System.Drawing.Point(118, 356);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(347, 324);
             this.groupBox1.TabIndex = 5;
@@ -380,7 +391,7 @@ namespace EntityFrameworkDemo
             // 
             this.dgwProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwProducts.Location = new System.Drawing.Point(104, 77);
+            this.dgwProducts.Location = new System.Drawing.Point(104, 107);
             this.dgwProducts.Name = "dgwProducts";
             this.dgwProducts.RowHeadersWidth = 62;
             this.dgwProducts.RowTemplate.Height = 28;
@@ -388,11 +399,80 @@ namespace EntityFrameworkDemo
             this.dgwProducts.TabIndex = 4;
             this.dgwProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwProducts_CellClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // tbxSearch
+            // 
+            this.tbxSearch.Location = new System.Drawing.Point(808, 29);
+            this.tbxSearch.Name = "tbxSearch";
+            this.tbxSearch.Size = new System.Drawing.Size(155, 26);
+            this.tbxSearch.TabIndex = 10;
+            this.tbxSearch.TextChanged += new System.EventHandler(this.tbxSearch_TextChanged);
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(734, 35);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(60, 20);
+            this.lblSearch.TabIndex = 11;
+            this.lblSearch.Text = "Search";
+            // 
+            // tbxmin
+            // 
+            this.tbxmin.Location = new System.Drawing.Point(58, 26);
+            this.tbxmin.Name = "tbxmin";
+            this.tbxmin.Size = new System.Drawing.Size(155, 26);
+            this.tbxmin.TabIndex = 12;
+            // 
+            // tbxmax
+            // 
+            this.tbxmax.Location = new System.Drawing.Point(236, 26);
+            this.tbxmax.Name = "tbxmax";
+            this.tbxmax.Size = new System.Drawing.Size(155, 26);
+            this.tbxmax.TabIndex = 13;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new System.Drawing.Point(155, 58);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(143, 28);
+            btnSearch.TabIndex = 14;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnGetById
+            // 
+            btnGetById.Location = new System.Drawing.Point(434, 58);
+            btnGetById.Name = "btnGetById";
+            btnGetById.Size = new System.Drawing.Size(143, 28);
+            btnGetById.TabIndex = 15;
+            btnGetById.Text = "Get By Id";
+            btnGetById.UseVisualStyleBackColor = true;
+            btnGetById.Click += new System.EventHandler(this.btnGetById_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 853);
+            this.Controls.Add(btnGetById);
+            this.Controls.Add(btnSearch);
+            this.Controls.Add(this.tbxmax);
+            this.Controls.Add(this.tbxmin);
+            this.Controls.Add(this.lblSearch);
+            this.Controls.Add(this.tbxSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -410,6 +490,7 @@ namespace EntityFrameworkDemo
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProducts)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -449,6 +530,12 @@ namespace EntityFrameworkDemo
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblStockAmount;
         private System.Windows.Forms.DataGridView dgwProducts;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.TextBox tbxSearch;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox tbxmin;
+        private System.Windows.Forms.TextBox tbxmax;
     }
 }
 
